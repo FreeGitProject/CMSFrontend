@@ -48,11 +48,52 @@ namespace CMSFrontend.Service
             try
             {
                 var result = JsonConvert.DeserializeObject<ResponseModel<T>>(restResponse.Content);
+
                 return result;
             }
             catch (Exception)
             {
                 return new ResponseModel<T> { };
+            }
+
+        }
+           public ResponseModelPaginated<T> PCallApi<T>(string apiUrl, string value, string baseUrl, Method method = Method.GET, string paramName = "application/json", ParameterType parameterType = ParameterType.RequestBody, string contentType = "application/json", string domainId = "", string orgId = "", string userName = "")
+        {
+
+            var restClient = new RestClient(baseUrl);
+            var restRequest = new RestRequest(apiUrl, method);
+
+            if (!string.IsNullOrEmpty(value))
+            {
+                var param = new RestSharp.Parameter(paramName, value, contentType, parameterType);
+                restRequest.AddParameter(param);
+            }
+            if (!string.IsNullOrEmpty(orgId))
+                restRequest.AddHeader("orgId", orgId);
+            if (!string.IsNullOrEmpty(domainId))
+                restRequest.AddHeader("DomainId", domainId);
+            if (!string.IsNullOrEmpty(userName))
+                restRequest.AddHeader("Email", userName);
+
+            //restRequest.AddHeader("token", Token().Token);
+            //restRequest.AddHeader("DeviceId", ReadCookie(Constants.COOKIE_DEVICEID));
+            //restRequest.AddHeader("SessionId", ReadCookie(Constants.COOKIE_SESSIONID));
+            //AddDefaultHeader(ref restRequest);
+
+          //  var authService = DependencyResolver.Current.GetService<IAuthService>();
+
+            //var token = authService.GetAccessToken(ConfigKeys.AuthorizationServerBaseAddress, ConfigKeys.AuthClientId, ConfigKeys.AuthClientSecret);
+            //restRequest.AddParameter("Authorization", "Bearer " + token.Token, ParameterType.HttpHeader);
+
+            var restResponse = restClient.Execute(restRequest);
+            try
+            {
+                var result = JsonConvert.DeserializeObject<ResponseModelPaginated<T>>(restResponse.Content);
+                return result;
+            }
+            catch (Exception)
+            {
+                return new ResponseModelPaginated<T> { };
             }
 
         }
@@ -168,7 +209,7 @@ namespace CMSFrontend.Service
     }
 
 
-    [Serializable]
+   
     public class ResponseModel<T>
     {
         public HttpStatusCode StatusCode { get; set; }
@@ -185,4 +226,10 @@ namespace CMSFrontend.Service
 
         public T Result { get; set; }
     }
+	public class ResponseModelPaginated<T> : ResponseModel<T>
+	{
+		public int? TotalRecords { get; set; }
+		public int? CurrentPage { get; set; }
+		public int? PageSize { get; set; }
+	}
 }

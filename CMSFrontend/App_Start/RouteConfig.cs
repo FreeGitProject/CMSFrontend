@@ -16,7 +16,7 @@ namespace CMSFrontend
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "CMS", action = "CreateCollection", id = UrlParameter.Optional }
+                defaults: new { controller = "CMS", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
