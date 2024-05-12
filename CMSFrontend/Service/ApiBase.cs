@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using RestSharp;
+using CMSFrontend.Helpers;
 
 
 namespace CMSFrontend.Service
@@ -39,10 +40,11 @@ namespace CMSFrontend.Service
             //restRequest.AddHeader("SessionId", ReadCookie(Constants.COOKIE_SESSIONID));
             //AddDefaultHeader(ref restRequest);
 
-          //  var authService = DependencyResolver.Current.GetService<IAuthService>();
+            //var authService = DependencyResolver.Current.GetService<IAuthService>();
 
-            //var token = authService.GetAccessToken(ConfigKeys.AuthorizationServerBaseAddress, ConfigKeys.AuthClientId, ConfigKeys.AuthClientSecret);
-            //restRequest.AddParameter("Authorization", "Bearer " + token.Token, ParameterType.HttpHeader);
+           // var token = authService.GetAccessToken(ConfigKeys.AuthorizationServerBaseAddress, ConfigKeys.AuthClientId, ConfigKeys.AuthClientSecret);
+            var token = TokenManager.GetAccessToken(ConfigKeys.AuthorizationServerBaseAddress, ConfigKeys.AuthClientId, ConfigKeys.AuthClientSecret);
+            restRequest.AddParameter("Authorization", "Bearer " + token.Token, ParameterType.HttpHeader);
 
             var restResponse = restClient.Execute(restRequest);
             try

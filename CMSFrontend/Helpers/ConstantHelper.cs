@@ -13,5 +13,8 @@ namespace CMSFrontend.Helpers
 
     public partial class ConfigKeys {
         public static readonly string CMSAPIBaseUrl = ConfigurationManager.AppSettings.Get("CMSAPIBaseUrl");
+        public static readonly string AuthorizationServerBaseAddress = ConfigurationManager.AppSettings.Get("AuthorizationServerBaseAddress");
+        public static readonly string AuthClientSecret = ConfigurationManager.AppSettings.Get("AuthClientSecret");
+        public static readonly string AuthClientId = ConfigurationManager.AppSettings.Get("AuthClientId");
     }
 }
