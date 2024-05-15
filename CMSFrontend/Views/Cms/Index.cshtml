@@ -1,7 +1,34 @@
 ﻿
+
+
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "IndexPage";
 }
-
-<h2>Collection List</h2>
-
+<p>
+    <a href="@Url.Action("CreateCollection")" class="btn btn-primary">Create New</a>
+</p>
+<div ng-controller="ListPageController">
+    <div ng-init='initList()'>
+        <h4>Collection Records</h4>
+        <table cellpadding="12" class="table table-bordered table-hover">
+            <tr style="background-color:mediumspringgreen;color:white">
+                <th>Id</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Image URL</th>
+                <th>Link</th>
+            </tr>
+            <tr ng-repeat="item in collectionList">
+                <td>{{item.Id}}</td>
+                <td>{{item.Title}}</td>
+                <td>{{item.Description}}</td>
+                <td>{{item.Image}}</td>
+                <td>{{item.Link}}</td>
+                <td>
+                    <a ng-href="/CollectionModel/Edit/{{ item.id }}" class="btn btn-primary">Edit</a>
+                        <a ng-href="/CollectionModel/Delete/{{ item.id }}" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

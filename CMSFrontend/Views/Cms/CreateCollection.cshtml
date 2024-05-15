@@ -1,11 +1,11 @@
 ﻿
-@{
+@*@{
     ViewBag.Title = "CreateCollection";
 }
 
 <h2>CreateCollection</h2>
 
-<div  ng-controller="CreateCollectionController">
+<div ng-controller="CreateCollectionController">
     <h2>Create New Collection</h2>
     <form ng-submit="saveCollection()">
         <label>Title:</label>
@@ -21,5 +21,35 @@
         <input type="text" ng-model="collection.link"><br><br>
 
         <button type="submit">Create</button>
+    </form>
+</div>*@
+
+
+@{
+    ViewBag.Title = "CreateCollection";
+}
+
+<h2>CreateCollection</h2>
+<div class="container-fluid min-vh-100 w-50 justify-content-center" ng-controller="CreateCollectionController">
+    <form name="collectionForm" class="mb-3" ng-submit="saveCollection()" novalidate>
+        <div class="mb-3">
+            <label>Title:</label>
+            <input type="text" class="form-control" name="title" ng-model="collection.title" placeholder="Title" required>
+            <span class="text-danger" ng-show="collectionForm.$submitted && collectionForm.title.$dirty && collectionForm.title.$error.required">Title is required</span>
+        </div>
+        <div class="mb-3">
+            <label>Description:</label>
+            <textarea class="form-control" name="description" ng-model="collection.description" placeholder="Description" required></textarea>
+            <span class="text-danger" ng-show="collectionForm.$submitted && collectionForm.description.$dirty && collectionForm.description.$error.required">Description is required</span>
+        </div>
+        <div class="mb-3">
+            <label>Image URL:</label>
+            <input type="text" class="form-control" name="image" ng-model="collection.image" placeholder="Image URL">
+        </div>
+        <div class="mb-3">
+            <label>Link:</label>
+            <input type="text" class="form-control" name="link" ng-model="collection.link" placeholder="Link">
+        </div>
+        <button class="d-grid btn btn-primary w-50 mx-auto" type="submit">Create</button>
     </form>
 </div>
