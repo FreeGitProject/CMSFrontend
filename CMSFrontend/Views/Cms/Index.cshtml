@@ -2,14 +2,14 @@
 
 
 @{
-    ViewBag.Title = "ListPage";
+    ViewBag.Title = "IndexPage";
 }
 <p>
     <a href="@Url.Action("CreateCollection")" class="btn btn-primary">Create New</a>
 </p>
 <div ng-controller="ListPageController">
     <div ng-init='initList()'>
-        <h4>Student Records</h4>
+        <h4>Collection Records</h4>
         <table cellpadding="12" class="table table-bordered table-hover">
             <tr style="background-color:mediumspringgreen;color:white">
                 <th>Id</th>
@@ -25,8 +25,8 @@
                 <td>{{item.Image}}</td>
                 <td>{{item.Link}}</td>
                 <td>
-                    @*<a ng-href="/CollectionModel/Edit/{{ item.id }}" class="btn btn-primary">Edit</a>
-                        <a ng-href="/CollectionModel/Delete/{{ item.id }}" class="btn btn-danger">Delete</a>*@
+                    <a ng-href="/CollectionModel/Edit/{{ item.id }}" class="btn btn-primary">Edit</a>
+                        <a ng-href="/CollectionModel/Delete/{{ item.id }}" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         </table>

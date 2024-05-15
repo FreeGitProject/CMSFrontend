@@ -15,7 +15,7 @@
                 {
                    // alert('collection created successfully!');
                     alert(response.data.message);
-                    window.location.href = '/Cms/ListPage';
+                    window.location.href = '/Cms/Index';
                 }
                 else {
                     alert('Failed to create collection. ');
@@ -47,3 +47,4 @@ myApp.controller('ListPageController', ['$scope', '$http', function ($scope, $ht
         // }
     // Call the function to fetch collections when the controller loads
 }]);
+
