@@ -160,7 +160,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\ConstantHelper.cs" />
+    <Compile Include="Helper\ConstantHelper.cs" />
+    <Compile Include="Helper\JavaScriptHelper.cs" />
     <Compile Include="Models\Collection.cs" />
     <Compile Include="Models\CollectionModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -223,6 +224,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Cms\Index.cshtml" />
     <Content Include="Views\Cms\CreateCollection.cshtml" />
+    <Content Include="Views\Cms\EditPage.cshtml" />
+    <Content Include="Views\Cms\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
