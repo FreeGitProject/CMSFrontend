@@ -8,6 +8,8 @@ namespace CMSFrontend.Helpers
     {
         public const string CreateCollection = "api/v1/CMS/collection";
         public const string GetCollections = "api/v1/CMS/collections";
+        public const string GetCollection = "api/v1/CMS/collection/{0}";
+        public const string updateCollection = "api/v1/CMS/collection/{0}";
 
         
     }
