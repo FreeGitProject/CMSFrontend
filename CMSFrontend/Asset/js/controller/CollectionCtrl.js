@@ -50,7 +50,7 @@ myApp.controller('EditPageController', ['$scope', '$http', function ($scope, $ht
     // }
     // Call the function to fetch collections when the controller loads
 
-    $scope.updateCollection = function () {
+    $scope.UpdateCollection = function () {
         if ($scope.collectionForm.$valid) {
             var data = {
                 id: $scope.collection.id,
@@ -69,7 +69,7 @@ myApp.controller('EditPageController', ['$scope', '$http', function ($scope, $ht
                 .then(function (response) {
                     // Handle success response
                    /* if (response.data) {*/
-                        alert(response.data.Message);
+                    alert(response.data.Message);
                         window.location.href = '/CMS/Index';
                     //} else {
                     //    alert(response.data.Message);
@@ -92,7 +92,7 @@ myApp.controller('ListPageController', ['$scope', '$http', function ($scope, $ht
     $scope.initList = function () {
         // Function to fetch collections from the backend
        // $scope.getAllCollections = function () {
-            $http.get('/CMS/ListPage1')
+        $http.get('/CMS/GetCollections')
                 .then(function (response) {
                     // Success callback
                     if (response.data) {
@@ -103,7 +103,7 @@ myApp.controller('ListPageController', ['$scope', '$http', function ($scope, $ht
                     // Error callback
                     console.error('Error fetching collections:', error);
                 });
-        };
+    };
         // }
     // Call the function to fetch collections when the controller loads
 }]);

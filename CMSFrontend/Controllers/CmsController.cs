@@ -24,7 +24,7 @@ namespace CMSFrontend.Controllers
         {
             return View();
         }
-		public JsonResult ListPage1()
+		public JsonResult GetCollections()
 		{
 			var res = _apibase.PCallApi<List<Collection>>(string.Format(ConstantHelper.GetCollections), string.Empty, ConfigKeys.CMSAPIBaseUrl, Method.GET, "application/json", ParameterType.RequestBody, "application/json");
 
@@ -44,7 +44,7 @@ namespace CMSFrontend.Controllers
 		}
 
 		[HttpPost]
-		public JsonResult updateCollection(CollectionModel updatedCollection)
+		public JsonResult UpdateCollection(CollectionModel updatedCollection)
 		{
 
 			try
@@ -54,7 +54,7 @@ namespace CMSFrontend.Controllers
 
 				if (res != null && res.Status == "Success" && res.Result != null)
 				{
-					return Json(res.Message, JsonRequestBehavior.AllowGet);
+					return Json(res, JsonRequestBehavior.AllowGet);
 				}
 				else
 				{
@@ -90,6 +90,31 @@ namespace CMSFrontend.Controllers
 				return Json(new { success = false, message = "Failed to save collection." });
 			}
 		}
+
+		[HttpGet]
+		public ActionResult Delete(string id)
+		{
+			var model = new Collection();
+			var res = _apibase.CallApi<Collection>(string.Format(ConstantHelper.DeleteCollection, id), string.Empty, ConfigKeys.CMSAPIBaseUrl, Method.DELETE, "application/json", ParameterType.RequestBody, "application/json");
+			if (res != null && res.Status == "Success")
+			{
+				model = res.Result;//not to use 
+			}
+			return RedirectToAction("Index");
+		}
+
+
+		//[HttpGet]
+		//public JsonResult Delete(string id)
+		//{
+		//	var model = new Collection();
+		//	var res = _apibase.CallApi<Collection>(string.Format(ConstantHelper.DeleteCollection, id), string.Empty, ConfigKeys.CMSAPIBaseUrl, Method.DELETE, "application/json", ParameterType.RequestBody, "application/json");
+		//	if (res != null && res.Status == "Success" && res.Result != null)
+		//	{
+		//		model = res.Result;
+		//	}
+		//	return Json(res, JsonRequestBehavior.AllowGet);
+		//}
 
 	}
 }

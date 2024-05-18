@@ -26,7 +26,7 @@
                 <td>{{item.Link}}</td>
                 <td>
                     <a ng-href="/Cms/Edit/{{ item.Id }}" class="btn btn-primary">Edit</a>
-                        <a ng-href="/CollectionModel/Delete/{{ item.id }}" class="btn btn-danger">Delete</a>
+                    <a ng-href="/Cms/Delete/{{ item.Id }}" onclick="return confirm('Are you sure you want to delete?')"  class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         </table>
