@@ -6,7 +6,7 @@
 
 <h2>EditCollection</h2>
 <div class="container-fluid min-vh-100 w-50 justify-content-center" ng-controller="EditPageController" ng-init='initEdit(@Html.Json(Model))'>
-    <form name="collectionForm" class="mb-3" ng-submit="updateCollection()" novalidate>
+    <form name="collectionForm" class="mb-3" ng-submit="UpdateCollection()" novalidate>
         <div class="mb-3">
             <label>Title:</label>
             <input type="text" class="form-control" name="title" ng-model="collection.title" placeholder="Title" required>
