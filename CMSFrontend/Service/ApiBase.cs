@@ -86,7 +86,8 @@ namespace CMSFrontend.Service
 
             //var token = authService.GetAccessToken(ConfigKeys.AuthorizationServerBaseAddress, ConfigKeys.AuthClientId, ConfigKeys.AuthClientSecret);
             //restRequest.AddParameter("Authorization", "Bearer " + token.Token, ParameterType.HttpHeader);
-
+            var token = TokenManager.GetAccessToken(ConfigKeys.AuthorizationServerBaseAddress, ConfigKeys.AuthClientId, ConfigKeys.AuthClientSecret);
+            restRequest.AddParameter("Authorization", "Bearer " + token.Token, ParameterType.HttpHeader);
             var restResponse = restClient.Execute(restRequest);
             try
             {
